@@ -269,6 +269,7 @@ mod test {
         invalid("a");
         invalid("0xg");
         invalid("0XG");
+        invalid("\u{2077}");
     }
 
     #[test]
