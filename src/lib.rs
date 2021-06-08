@@ -50,7 +50,7 @@ impl<'a> IpParser<'a> {
             self.next();
             if !self.end() && (self.c() == Self::SMALL_X || self.c() == Self::BIG_X) {
                 self.next();
-                if self.end() {
+                if self.end() || self.c() == Self::DOT {
                     Err(NotAnIp)
                 } else {
                     Ok(16)
@@ -275,5 +275,6 @@ mod test {
     #[test]
     fn truncate_hex() {
         invalid("0x");
+        invalid("0x.1.1.1");
     }
 }
